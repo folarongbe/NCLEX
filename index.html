@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCLEX Success Command Center</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c; /* Red for High-Alert/Maternal Danger Signs */
+            --bg: #f4f7f6;
+            --text: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background: var(--primary);
+            height: 100vh;
+            position: fixed;
+            color: white;
+            padding: 20px;
+        }
+
+        nav h2 { border-bottom: 2px solid var(--secondary); padding-bottom: 10px; }
+
+        nav ul { list-style: none; padding: 0; }
+
+        nav ul li { margin: 20px 0; cursor: pointer; transition: 0.3s; }
+
+        nav ul li:hover { color: var(--secondary); }
+
+        /* Main Content Area */
+        main {
+            margin-left: 270px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .header-status {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 60%; /* Current Readiness */
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        /* Study Cards */
+        .card {
+            background: var(--card-bg);
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card.priority { border-left-color: var(--accent); }
+
+        .rationale {
+            background: #f9f9f9;
+            padding: 15px;
+            border-top: 1px dashed #ccc;
+            margin-top: 15px;
+            display: none; /* Hidden by default for active recall */
+        }
+
+        .btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            background: #eee;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h2>NCLEX Prep</h2>
+    <ul>
+        <li>📊 Dashboard</li>
+        <li>💊 Pharmacology</li>
+        <li>🤰 Maternal Health</li>
+        <li>⚡ Rapid-Fire Quiz</li>
+        <li>📝 Practice Exams</li>
+    </ul>
+</nav>
+
+<main>
+    <div class="header-status">
+        <div>
+            <h1>Study Command Center</h1>
+            <p>Target Exam Date: <strong>May 2026</strong></p>
+        </div>
+        <div style="text-align: right;">
+            <span>Current Readiness: 60%</span>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+    </div>
+
+    <section id="content">
+        <div class="card priority">
+            <span class="tag">Pharmacology</span>
+            <h3>High-Alert: Digoxin (Lanoxin)</h3>
+            <p><strong>Therapeutic Level:</strong> 0.5 - 2.0 ng/mL</p>
+            <p><strong>Nursing Action:</strong> Check apical pulse for 1 full minute before administration.</p>
+            
+            <button class="btn" onclick="toggleRationale(this)">Show Rationale</button>
+            <div class="rationale">
+                <strong>Why?</strong> Digoxin is a negative chronotrope (slows heart rate). If HR < 60 in adults, withhold and notify provider. Watch for hypokalemia (potentiates toxicity).
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">Maternal Health</span>
+            <h3>Fetal Heart Rate: Early Decelerations</h3>
+            <p><strong>Assessment:</strong> Symmetrical decrease and return to baseline associated with uterine contraction.</p>
+            
+            <button class="btn" onclick="toggleRationale(this)">Show Rationale</button>
+            <div class="rationale">
+                <strong>Mechanism:</strong> Fetal Head Compression. <br>
+                <strong>Nursing Action:</strong> Generally benign. Document and continue to monitor. No immediate intervention required.
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    function toggleRationale(btn) {
+        const rationale = btn.nextElementSibling;
+        if (rationale.style.display === "block") {
+            rationale.style.display = "none";
+            btn.innerText = "Show Rationale";
+        } else {
+            rationale.style.display = "block";
+            btn.innerText = "Hide Rationale";
+        }
+    }
+</script>
+
+</body>
+</html>
